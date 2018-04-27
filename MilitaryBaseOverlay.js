@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WME Military Bases Overlay
 // @namespace    https://greasyfork.org/en/users/166843-wazedev
-// @version      2018.04.27.01
+// @version      2018.04.27.02
 // @description  Adds an overlay for military bases
 // @author       WazeDev
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor\/?.*$/
@@ -108,7 +108,6 @@
         loadSettingsFromStorage();
         var layerid = 'wme_military_overlay';
         var _features = GetFeaturesFromKMLString(_kml);
-        debugger;
         for(let i=0; i< _features.length; i++){
             _features[i].attributes.name = _features[i].attributes.name.replace('<at><openparen>', '').replace('<closeparen>','');
             _features[i].attributes.labelText = _features[i].attributes.name;
