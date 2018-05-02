@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WME Military Bases Overlay
 // @namespace    https://greasyfork.org/en/users/166843-wazedev
-// @version      2018.05.01.01
+// @version      2018.05.01.02
 // @description  Adds an overlay for military bases
 // @author       WazeDev
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor\/?.*$/
@@ -63,7 +63,7 @@
                 var text = '';
                 var num;
                 var url;
-                if(feature.geometry.containsPoint(mapCenter)) {
+                if(pointInFeature(feature.geometry, mapCenter)){
                     text = feature.attributes.name;
                     color = '#00ffff';
                     var $div = $('<div>', {id:'wmemilitaryoverlay', class:"wmemilitaryoverlay-region", style:'display:inline-block;margin-left:10px;', title:'Click to toggle color on/off for this group'})
@@ -78,6 +78,18 @@
                 }
             }
         }
+    }
+
+    function pointInFeature(geometry, mapCenter){
+        if(geometry.CLASS_NAME == "OpenLayers.Geometry.Collection"){
+            for(let i=0; i<geometry.components.length; i++){
+                if(geometry.components[i].containsPoint(mapCenter))
+                    return true;
+            }
+        }
+        else
+            return geometry.containsPoint(mapCenter);
+        return false;
     }
 
     function toggleAreaFill() {
