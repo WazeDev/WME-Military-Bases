@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WME Military Bases Overlay
 // @namespace    https://greasyfork.org/en/users/166843-wazedev
-// @version      2018.05.01.02
+// @version      2018.05.01.03
 // @description  Adds an overlay for military bases
 // @author       WazeDev
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor\/?.*$/
@@ -13,7 +13,7 @@
 (function() {
     'use strict';
 
-    var _color = '#7cb342';
+    var _color = '#E6E6E6';
     var _settingsStoreName = '_wme_military_overlay';
     var _settings;
     var _features;
@@ -127,11 +127,11 @@
 
         var layerStyle = new OpenLayers.StyleMap({
             strokeDashstyle: 'solid',
-            strokeColor: '#E6E6E6',
+            strokeColor: _color,
             strokeOpacity: 0.4,
             strokeWidth: 2,
             fillOpacity: defaultFillOpacity,
-            fillColor: '#E6E6E6', //'#7cb342',
+            fillColor: _color, //'#7cb342',
             label : "${labelText}",
             fontColor: '#ffffff',
             labelOutlineColor: '#000000',
